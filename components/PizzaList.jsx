@@ -12,12 +12,9 @@ function PizzaList({ pizzaList }) {
         sit amet, consectetur adipiscing elit.
       </p>
       <div className={styles.wrapper}>
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
+        {pizzaList.map((pizza) => (
+          <PizzaCard key={pizza._id} pizza={pizza} />
+        ))}
       </div>
     </div>
   )
