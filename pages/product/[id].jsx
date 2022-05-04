@@ -5,6 +5,7 @@ import axios from "axios"
 
 function Product({ pizza }) {
   const [price, setPrice] = useState(pizza.prices[0])
+  const [extras, setExtras] = useState([])
   const [size, setSize] = useState(0)
 
   const changePrice = (number) => {
@@ -18,13 +19,19 @@ function Product({ pizza }) {
 
   const handleChange = (e, option) => {
     const checked = e.target.checked
+    console.log(option._id)
 
     if (checked) {
       changePrice(option.price)
+      setExtras((prev) => [...prev, option])
     } else {
       changePrice(-option.price)
+      setExtras(extras.filter((extras) => extras._id !== option._id))
     }
   }
+
+  console.log(extras)
+
   // const pizza = {
   //   id: 1,
   //   img: "/img/pizza.png",
