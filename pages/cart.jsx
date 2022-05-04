@@ -13,6 +13,8 @@ function Cart() {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
   // console.log(cart.total)
+  const [open, setOpen] = useState(false)
+  const [cash, setCash] = useState(false)
 
   const amount = "2"
   const currency = "USD"
@@ -133,17 +135,32 @@ function Cart() {
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Total:</b>${cart.total}
           </div>
-          <button className={styles.button}>CHECKOUT NOW!</button>
-          <PayPalScriptProvider
-            options={{
-              "client-id": "test",
-              components: "buttons",
-              currency: "USD",
-              "disable-funding": "credit,card,p24",
-            }}
-          >
-            <ButtonWrapper currency={currency} showSpinner={false} />
-          </PayPalScriptProvider>
+
+          {open ? (
+            <div className={styles.paymentMethods}>
+              <button
+                className={styles.payButton}
+                onClick={() => setCash(true)}
+              >
+                CASH ON DELIVERY
+              </button>
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "ATTL8fDJKfGzXNH4VVuDy1qW4_Jm8S0sqmnUTeYtWpqxUJLnXIn90V8YIGDg-SNPaB70Hg4mko_fde4-",
+                  components: "buttons",
+                  currency: "USD",
+                  "disable-funding": "credit,card,p24",
+                }}
+              >
+                <ButtonWrapper currency={currency} showSpinner={false} />
+              </PayPalScriptProvider>
+            </div>
+          ) : (
+            <button onClick={() => setOpen(true)} className={styles.button}>
+              CHECKOUT NOW!
+            </button>
+          )}
         </div>
       </div>
     </div>
