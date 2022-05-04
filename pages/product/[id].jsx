@@ -20,7 +20,6 @@ function Product({ pizza }) {
 
   const handleChange = (e, option) => {
     const checked = e.target.checked
-    console.log(option._id)
 
     if (checked) {
       changePrice(option.price)
@@ -31,15 +30,8 @@ function Product({ pizza }) {
     }
   }
 
-  console.log(extras)
-  console.log(quantity)
-  // const pizza = {
-  //   id: 1,
-  //   img: "/img/pizza.png",
-  //   name: "CAMPAGNOLA",
-  //   price: [19.9, 23.9, 27.9],
-  //   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
-  // }
+  // console.log(extras)
+  // console.log(quantity)
   return (
     <div className={styles.container}>
       <div className={styles.left}>
