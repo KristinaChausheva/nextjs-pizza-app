@@ -4,7 +4,24 @@ import { useState } from "react"
 import axios from "axios"
 
 function Product({ pizza }) {
+  const [price, setPrice] = useState(pizza.prices[0])
   const [size, setSize] = useState(0)
+
+  const changePrice = (number) => {
+    setPrice(price + number)
+  }
+  const handleSize = (sizeIndex) => {
+    const diff = pizza.prices[sizeIndex] - pizza.prices[size]
+    setSize(sizeIndex)
+    changePrice(diff)
+  }
+
+  const handleChange = (e, option) => {
+    const checked = e.target.checked
+
+    if (checked) {
+    }
+  }
   // const pizza = {
   //   id: 1,
   //   img: "/img/pizza.png",
@@ -25,15 +42,15 @@ function Product({ pizza }) {
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
-          <div className={styles.size} onClick={() => setSize(0)}>
+          <div className={styles.size} onClick={() => handleSize(0)}>
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Small</span>
           </div>
-          <div className={styles.size} onClick={() => setSize(1)}>
+          <div className={styles.size} onClick={() => handleSize(1)}>
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Medium</span>
           </div>
-          <div className={styles.size} onClick={() => setSize(2)}>
+          <div className={styles.size} onClick={() => handleSize(2)}>
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Large</span>
           </div>
@@ -44,9 +61,10 @@ function Product({ pizza }) {
             <div className={styles.option}>
               <input
                 type="checkbox"
-                id="double"
-                name="double"
+                id={option.text}
+                name={option.text}
                 className={styles.checkbox}
+                onChange={(e) => handleChange(e, option)}
               />
               <label htmlFor="double">{option.text}</label>
             </div>
