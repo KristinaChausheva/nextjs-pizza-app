@@ -3,10 +3,10 @@ import styles from "../styles/PizzaCard.module.css"
 import Link from "next/link"
 
 const PizzaCard = ({ pizza }) => {
-  console.log(pizza)
+  // console.log(pizza)
   return (
     <div className={styles.container}>
-      <Link href={`/product/${pizza._id}`}>
+      <Link href={`/product/${pizza._id}`} passHref>
         <Image src={pizza.img} alt="" width="500" height="500" />
       </Link>
 
