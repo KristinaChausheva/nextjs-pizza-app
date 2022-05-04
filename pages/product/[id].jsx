@@ -7,6 +7,7 @@ function Product({ pizza }) {
   const [price, setPrice] = useState(pizza.prices[0])
   const [extras, setExtras] = useState([])
   const [size, setSize] = useState(0)
+  const [quantity, setQuantity] = useState(1)
 
   const changePrice = (number) => {
     setPrice(price + number)
@@ -31,7 +32,7 @@ function Product({ pizza }) {
   }
 
   console.log(extras)
-
+  console.log(quantity)
   // const pizza = {
   //   id: 1,
   //   img: "/img/pizza.png",
@@ -81,7 +82,12 @@ function Product({ pizza }) {
           ))}
         </div>
         <div className={styles.add}>
-          <input type="number" defaultValue={1} className={styles.quantity} />
+          <input
+            onChange={(e) => setQuantity(e.target.value)}
+            type="number"
+            defaultValue={1}
+            className={styles.quantity}
+          />
           <button className={styles.button}>Add to Cart</button>
         </div>
       </div>
