@@ -1,15 +1,18 @@
 import { useState } from "react"
 import styles from "../styles/OrderDetail.module.css"
 
-const OrderDetail = ({ total, createOrder }) => {
+const OrderDetail = ({ total, createOrder, setCash, cash }) => {
   const [customer, setCustomer] = useState("")
   const [address, setAddress] = useState("")
   const [phone, setPhone] = useState("")
 
   const handleClick = () => {
-    createOrder({ customer, address, phone, total, method: 0 })
+    createOrder({ customer, address, total, method: 0 })
   }
 
+  const handleBackButton = () => {
+    setCash(false)
+  }
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -44,6 +47,9 @@ const OrderDetail = ({ total, createOrder }) => {
         </div>
         <button className={styles.button} onClick={handleClick}>
           Order
+        </button>
+        <button className={styles.closeBtn} onClick={handleBackButton}>
+          x
         </button>
       </div>
     </div>
