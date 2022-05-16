@@ -42,6 +42,7 @@ const Index = ({ orders, products }) => {
               <th>Image</th>
               <th>Id</th>
               <th>Title</th>
+              <th>Description</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
@@ -60,6 +61,7 @@ const Index = ({ orders, products }) => {
                 </td>
                 <td>{product._id.slice(0, 5)}...</td>
                 <td>{product.title}</td>
+                <td>{product.desc}</td>
                 <td>${product.prices[0]}</td>
                 <td>
                   <button className={styles.button}>Edit</button>
