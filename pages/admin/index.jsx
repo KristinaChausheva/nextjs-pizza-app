@@ -12,7 +12,9 @@ const Index = ({ orders, products }) => {
 
   const [close, setClose] = useState(true)
 
-  // const handleEdit = async (id) => {}
+  const handleEdit = async (id) => {
+    setClose(false)
+  }
 
   const handleDelete = async (id) => {
     // console.log(id)
@@ -75,9 +77,10 @@ const Index = ({ orders, products }) => {
                       className={styles.button}
                       setClose={setClose}
                       id={product._id}
+                      onClick={() => handleEdit(product._id)}
                     />
                   }
-                  {!close && <Edit setClose={setClose} />}
+                  {!close && <Edit setClose={setClose} id={product._id} />}
 
                   <button
                     className={styles.button}
