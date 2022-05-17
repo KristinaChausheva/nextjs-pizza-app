@@ -1,6 +1,8 @@
 import axios from "axios"
 import Image from "next/image"
 import { useState } from "react"
+import EditButton from "../../components/EditButton"
+import Edit from "../../components/Edit"
 import styles from "../../styles/Admin.module.css"
 
 const Index = ({ orders, products }) => {
@@ -8,8 +10,12 @@ const Index = ({ orders, products }) => {
   const [orderList, setOrderList] = useState(orders)
   const status = ["preparing", "on the way", "delivered"]
 
+  const [close, setClose] = useState(true)
+
+  // const handleEdit = async (id) => {}
+
   const handleDelete = async (id) => {
-    console.log(id)
+    // console.log(id)
     try {
       const res = await axios.delete("http://localhost:3000/api/products/" + id)
       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id))
@@ -64,7 +70,15 @@ const Index = ({ orders, products }) => {
                 <td>{product.desc}</td>
                 <td>${product.prices[0]}</td>
                 <td>
-                  <button className={styles.button}>Edit</button>
+                  {
+                    <EditButton
+                      className={styles.button}
+                      setClose={setClose}
+                      id={product._id}
+                    />
+                  }
+                  {!close && <Edit setClose={setClose} />}
+
                   <button
                     className={styles.button}
                     onClick={() => handleDelete(product._id)}
