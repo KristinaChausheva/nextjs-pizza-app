@@ -11,9 +11,13 @@ const Index = ({ orders, products }) => {
   const status = ["preparing", "on the way", "delivered"]
 
   const [close, setClose] = useState(true)
+  const [pizza, setPizza] = useState({})
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id, product) => {
+    console.log(id)
+    console.log(product)
     setClose(false)
+    setPizza(product)
   }
 
   const handleDelete = async (id) => {
@@ -72,16 +76,14 @@ const Index = ({ orders, products }) => {
                 <td>{product.desc}</td>
                 <td>${product.prices[0]}</td>
                 <td className={styles.actions}>
-                  {
-                    <EditButton
-                      className={styles.button}
-                      setClose={setClose}
-                      id={product._id}
-                      onClick={() => handleEdit(product._id)}
-                    />
-                  }
-                  {!close && <Edit setClose={setClose} id={product._id} />}
-
+                  <button
+                    className={styles.button}
+                    id={product._id}
+                    onClick={() => handleEdit(product._id, product)}
+                  >
+                    Edit
+                  </button>
+                  {!close && <Edit setClose={setClose} pizza={pizza} />}
                   <button
                     className={styles.button}
                     onClick={() => handleDelete(product._id)}

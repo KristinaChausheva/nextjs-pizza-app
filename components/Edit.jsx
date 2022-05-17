@@ -3,7 +3,7 @@ import styles from "../styles/Edit.module.css"
 import axios from "axios"
 import { useRouter } from "next/router"
 
-const Edit = ({ setClose, id }) => {
+const Edit = ({ setClose, pizza }) => {
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState(null)
   const [desc, setDesc] = useState(null)
@@ -11,6 +11,7 @@ const Edit = ({ setClose, id }) => {
   const [extraOptions, setExtraOptions] = useState([])
   const [extra, setExtra] = useState(null)
 
+  console.log(pizza)
   const changePrice = (e, index) => {
     const currentPrices = prices
     currentPrices[index] = e.target.value
@@ -47,8 +48,12 @@ const Edit = ({ setClose, id }) => {
       }
 
       console.log("here")
+      console.log(newProduct)
 
-      await axios.put(`http://localhost:3000/api/products/${id}`, newProduct)
+      await axios.put(
+        `http://localhost:3000/api/products/${pizza._id}`,
+        newProduct
+      )
       setClose(true)
       console.log(close)
     } catch (err) {
