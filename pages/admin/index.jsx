@@ -52,7 +52,7 @@ const Index = ({ orders, products }) => {
               <th>Title</th>
               <th>Description</th>
               <th>Price</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </tbody>
           {pizzaList.map((product) => (
@@ -71,7 +71,7 @@ const Index = ({ orders, products }) => {
                 <td>{product.title}</td>
                 <td>{product.desc}</td>
                 <td>${product.prices[0]}</td>
-                <td>
+                <td className={styles.actions}>
                   {
                     <EditButton
                       className={styles.button}
